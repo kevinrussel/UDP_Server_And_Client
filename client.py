@@ -1,1 +1,8 @@
 import socket
+
+
+udp_client_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+udp_server_address = ("127.0.0.1",8080)
+message = b"Hello world"
+
+udp_client_socket.sendto(message,udp_server_address)
