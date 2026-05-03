@@ -1,5 +1,5 @@
 import tkinter as tk
-
+from client import UDP_Client
 def main():
     root = tk.Tk()
     root.title("UDP")
@@ -25,7 +25,8 @@ def main():
         ip = ip_input.get().strip()
         port = port_input.get().strip()
         print(f"Sending to {ip}:{port}")
-
+        client_udp = UDP_Client()
+        client_udp.send()
     send_button = tk.Button(
         root,
         text="Send",
