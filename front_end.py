@@ -22,11 +22,11 @@ def main():
 
     # Send button
     def on_send():
-        ip = ip_input.get().strip()
+        ip = str(ip_input.get().strip())
         port = port_input.get().strip()
         print(f"Sending to {ip}:{port}")
         client_udp = UDP_Client()
-        client_udp.send()
+        client_udp.send(ip,port)
     send_button = tk.Button(
         root,
         text="Send",
