@@ -19,14 +19,21 @@ def main():
 
     port_input = tk.Entry(root, font=("Helvetica", 24), width=40)
     port_input.pack(ipady=10)
-
+    client_udp = UDP_Client()
     # Send button
     def on_send():
         ip = str(ip_input.get().strip())
-        port = int(port_input.get().strip())
+        port = int(port_input.get())
         print(f"Sending to {ip}:{port}")
-        client_udp = UDP_Client()
+        
         client_udp.send(str(ip),port)
+
+    def packet_test():
+        ip = str(ip_input.get().strip())
+        port = int(port_input.get())
+        print(f"Testing to {ip}:{port}")
+        client_udp.send(str(ip),port)
+    
     send_button = tk.Button(
         root,
         text="Send",
@@ -40,6 +47,23 @@ def main():
         cursor="hand2"
     )
     send_button.pack(pady=(60, 0))
+
+
+
+
+    test_button = tk.Button(
+        root,
+        text="Test",
+        command=packet_test,
+        font=("Helvetica", 45, "bold"),
+        bg="#4a90d9",
+        fg="white",
+        relief="flat",
+        padx=60,
+        pady=20,
+        cursor="hand2"
+    )
+    test_button.pack(pady=(60, 0))
 
     root.mainloop()
 
