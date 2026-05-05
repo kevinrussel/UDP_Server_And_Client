@@ -9,8 +9,7 @@ class UDP_Client:
         i = 0
         while(i < 10):
             message = f"Hello World {i}".encode()
-            message = 
-            self.udp_client_socket.sendto(message,(server,port))
+            self.udp_client_socket.sendto(message,(server_address,port))
             i +=1
 
     def send(self, server_address = "127.0.0.1",port=8080):
