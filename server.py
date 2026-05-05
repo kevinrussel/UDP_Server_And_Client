@@ -14,6 +14,6 @@ while True:
     message = message[1:]
     message = message.decode("utf-8")
     print(header)
-    print(message)
-    print(num)
+    print(message)                   
+    print(f'packet is {num})')
     num = num + 1
