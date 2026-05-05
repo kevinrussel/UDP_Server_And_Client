@@ -7,5 +7,8 @@ udp_server_socket.bind(('',8080))
 
 while True:
     message,address = udp_server_socket.recvfrom(1024)
+
+    
+    print(message)
     message = message.decode("utf-8")
     print(message)

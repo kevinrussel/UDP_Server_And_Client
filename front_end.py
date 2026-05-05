@@ -32,7 +32,7 @@ def main():
         ip = str(ip_input.get().strip())
         port = int(port_input.get())
         print(f"Testing to {ip}:{port}")
-        client_udp.send(str(ip),port)
+        client_udp.test(str(ip),port)
     
     send_button = tk.Button(
         root,
