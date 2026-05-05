@@ -10,7 +10,7 @@ while True:
     message,address = udp_server_socket.recvfrom(1024)
 
     header = message[:1]
-
+    header = struct.unpack("!B",header)[0]
     message = message[1:]
     print(header)
     message = message.decode("utf-8")
