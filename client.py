@@ -1,6 +1,7 @@
 class UDP_Client:
     import socket
     import struct
+    import random
     def __init__(self):
         self.udp_client_socket = self.socket.socket(self.socket.AF_INET,self.socket.SOCK_DGRAM)
         
@@ -8,7 +9,11 @@ class UDP_Client:
     
     def test(self,server_address= "127.0.0.1", port=8080):
         i = 0
-        while(i < 10):
+        while(i < 100):
+            num = self.random.randint(0,100)
+            if(num <= 10):
+                continue
+            
             message = self.struct.pack('!B',i) + b"Hello World"
             self.udp_client_socket.sendto(message,(server_address,port))
             i +=1
