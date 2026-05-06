@@ -12,15 +12,12 @@ class UDP_Client:
     def test(self,server_address= "127.0.0.1", port=8080):
         i = 0
         count = 0
-
         for i in range(0,100):
             num = self.random.randint(0,100)
-            print(num)
             if(num <= 10):
                 count +=1
-                continue
-            
-            message = self.struct.pack('!B',i) + b"Hello World"
+                continue            
+            message = self.create_header(i) + b"Hello World"
             self.udp_client_socket.sendto(message,(server_address,port))
         print(f'count is {count}')
 
