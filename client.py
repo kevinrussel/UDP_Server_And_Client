@@ -5,7 +5,9 @@ class UDP_Client:
     def __init__(self):
         self.udp_client_socket = self.socket.socket(self.socket.AF_INET,self.socket.SOCK_DGRAM)
         
-    
+    def create_header(self,header_packet_num):
+        header = self.struct.pack('!B',header_packet_num)
+        return header
     
     def test(self,server_address= "127.0.0.1", port=8080):
         i = 0
