@@ -5,7 +5,7 @@ import struct
 udp_server_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
 udp_server_socket.bind(('',8080))
 
-num = 0
+num = 1
 while True:
     message,address = udp_server_socket.recvfrom(1024)
 
@@ -13,7 +13,7 @@ while True:
     header = struct.unpack("!B",header)[0]
     message = message[1:]
     message = message.decode("utf-8")
-    print(header)
+    print(f' This packet is {header}')
     print(message)                   
-    print(f'packet is {num})')
+    print(f'Total Num of Recived packet is {num}\n')
     num = num + 1

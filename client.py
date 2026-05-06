@@ -12,15 +12,16 @@ class UDP_Client:
     def test(self,server_address= "127.0.0.1", port=8080):
         i = 0
         count = 0
-        for i in range(0,100):
+        for i in range(1,101):
             num = self.random.randint(0,100)
             if(num <= 10):
                 count +=1
                 continue            
-            message = self.create_header(i) + b"Hello World"
+            message = self.create_header(i) + b"This is a Test Packet."
             self.udp_client_socket.sendto(message,(server_address,port))
-        print(f'count is {count}')
+        print(f'packet drop count is {count}')
 
     def send(self, server_address = "127.0.0.1",port=8080):
-        message = b"Hello world"
+        header = self.create_header(0)
+        message = header + b"This is a handshake test."
         self.udp_client_socket.sendto(message,(server_address,port))
