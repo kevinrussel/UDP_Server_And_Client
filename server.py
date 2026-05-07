@@ -1,6 +1,6 @@
 import socket
 import struct
-
+import time
 class udp_server:
 
 
@@ -8,7 +8,12 @@ class udp_server:
         udp_server_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
         udp_server_socket.bind(('',8080))
 
-    
+    def handle_recieved_message(self,message):
+        header = message[:9]
+        packet_num = struct.unpack("!Bd", header)[1]
+        timestamp = (self.time.time())
+        message = (message[9:]).decode("utf-8")
+        return   
     def udp_server_listen(self):
         num = 1
         while True:
