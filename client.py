@@ -8,6 +8,7 @@ class UDP_Client:
         
     def create_header(self,header_packet_num):
         timestamp = self.time.time()
+        print(timestamp)
         header = self.struct.pack('!Bf',header_packet_num,timestamp)
         return header
     
