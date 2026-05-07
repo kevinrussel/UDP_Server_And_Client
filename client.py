@@ -7,14 +7,13 @@ class UDP_Client:
         self.udp_client_socket = self.socket.socket(self.socket.AF_INET,self.socket.SOCK_DGRAM)
         
     def create_header(self,header_packet_num):
-        header = self.struct.pack('!Bf',header_packet_num)
+        timestamp = self.time.time()
+        header = self.struct.pack('!Bf',header_packet_num,timestamp)
         return header
     
     def test(self,server_address= "127.0.0.1", port=8080):
         i = 0
         count = 0
-        timestamp = self.time.time()
-        print(type(timestamp))
         for i in range(1,101):
             num = self.random.randint(0,100)
             if(num <= 10):
