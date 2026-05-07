@@ -4,9 +4,10 @@ import time
 class udp_server:
 
 
-    def start_udp_server():
+    def start_udp_server(self):
         udp_server_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
         udp_server_socket.bind(('',8080))
+        self.udp_server_listen()
 
     def handle_recieved_message(self,message):
         header = message[:9]
@@ -25,5 +26,6 @@ class udp_server:
             print(f'Total Num of Recived packet is {num}\n')
             num = num + 1
 
-    if __name__ =='__main__':
-        sart_udp_server()
+
+udp = udp_server()
+udp.start_udp_server()
