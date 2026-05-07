@@ -9,7 +9,8 @@ class UDP_Client:
     def create_header(self,header_packet_num):
         timestamp = self.time.time()
         print(timestamp)
-        header = self.struct.pack('!Bf',header_packet_num,timestamp)
+        print(type(timestamp))
+        header = self.struct.pack('!Bd',header_packet_num,timestamp)
         return header
     
     def test(self,server_address= "127.0.0.1", port=8080):
