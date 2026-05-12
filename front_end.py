@@ -1,69 +1,189 @@
 import tkinter as tk
-from client import UDP_Client
+from tkinter import font as tkfont
+
+# Placeholder imports - swap in your real client when ready
+# from client import UDP_Client
+
 def main():
     root = tk.Tk()
-    root.title("UDP")
-    root.geometry("1500x1000")
-    root.configure(background="grey32")
+    root.title("UDP Tool")
+    root.geometry("1100x750")
+    root.configure(background="#1a1a2e")
+    root.resizable(False, False)
 
-    # IP input
-    ip_label = tk.Label(root, text="IP Address", bg="grey32", fg="white", font=("Helvetica", 45, "bold"))
-    ip_label.pack(pady=(80, 10))
+    # ── Colour palette ──────────────────────────────────────────────
+    BG          = "#1a1a2e"
+    CARD        = "#16213e"
+    ACCENT      = "#0f3460"
+    BTN_IDLE    = "#0f3460"
+    BTN_HOVER   = "#1a4a80"
+    BTN_ACTIVE  = "#e94560"
+    FG          = "#eaeaea"
+    FG_DIM      = "#8892a4"
+    ENTRY_BG    = "#0d1b2a"
+    BORDER      = "#2a3a5c"
 
-    ip_input = tk.Entry(root, font=("Helvetica", 24), width=40)
-    ip_input.pack(ipady=10)
+    # ── Helpers ─────────────────────────────────────────────────────
+    def make_label(parent, text, size=13, bold=False, color=FG):
+        weight = "bold" if bold else "normal"
+        return tk.Label(parent, text=text,
+                        bg=parent["bg"] if hasattr(parent, "__getitem__") else BG,
+                        fg=color,
+                        font=("Courier New", size, weight))
 
-    # Port input
-    port_label = tk.Label(root, text="Port", bg="grey32", fg="white", font=("Helvetica", 28, "bold"))
-    port_label.pack(pady=(40, 10))
+    def make_entry(parent, width=22):
+        e = tk.Entry(parent,
+                     font=("Courier New", 14),
+                     bg=ENTRY_BG, fg=FG,
+                     insertbackground=FG,
+                     relief="flat",
+                     bd=0,
+                     width=width,
+                     highlightthickness=1,
+                     highlightbackground=BORDER,
+                     highlightcolor=BTN_ACTIVE)
+        return e
 
-    port_input = tk.Entry(root, font=("Helvetica", 24), width=40)
-    port_input.pack(ipady=10)
-    client_udp = UDP_Client()
-    # Send button
-    def on_send():
-        ip = str(ip_input.get().strip())
-        port = int(port_input.get())
-        print(f"Sending to {ip}:{port}")
-        
-        client_udp.send(str(ip),port)
+    def make_button(parent, text, command=None, accent=False, width=18):
+        color = BTN_ACTIVE if accent else BTN_IDLE
+        btn = tk.Button(parent,
+                        text=text,
+                        command=command,
+                        font=("Courier New", 12, "bold"),
+                        bg=color,
+                        fg=FG,
+                        activebackground=BTN_HOVER,
+                        activeforeground=FG,
+                        relief="flat",
+                        bd=0,
+                        cursor="hand2",
+                        width=width,
+                        pady=10)
+        # hover effect
+        def on_enter(e): btn.config(bg=BTN_ACTIVE)
+        def on_leave(e): btn.config(bg=color)
+        btn.bind("<Enter>", on_enter)
+        btn.bind("<Leave>", on_leave)
+        return btn
 
-    def packet_test():
-        ip = str(ip_input.get().strip())
-        port = int(port_input.get())
-        print(f"Testing to {ip}:{port}")
-        client_udp.test(str(ip),port)
-    
-    send_button = tk.Button(
-        root,
-        text="Send",
-        command=on_send,
-        font=("Helvetica", 45, "bold"),
-        bg="#4a90d9",
-        fg="white",
-        relief="flat",
-        padx=60,
-        pady=20,
-        cursor="hand2"
-    )
-    send_button.pack(pady=(60, 0))
+    def section_frame(parent, padx=30, pady=15):
+        f = tk.Frame(parent, bg=CARD,
+                     highlightthickness=1,
+                     highlightbackground=BORDER)
+        f.pack(fill="x", padx=padx, pady=pady)
+        return f
 
+    # ── Title bar ────────────────────────────────────────────────────
+    title_bar = tk.Frame(root, bg=ACCENT, height=50)
+    title_bar.pack(fill="x")
+    title_bar.pack_propagate(False)
+    tk.Label(title_bar, text="[ UDP TOOL ]",
+             bg=ACCENT, fg=BTN_ACTIVE,
+             font=("Courier New", 16, "bold")).pack(side="left", padx=20, pady=10)
+    tk.Label(title_bar, text="network diagnostics v0.1",
+             bg=ACCENT, fg=FG_DIM,
+             font=("Courier New", 10)).pack(side="right", padx=20, pady=14)
 
+    # ── Connection section ───────────────────────────────────────────
+    conn_frame = section_frame(root, pady=(20, 8))
+    conn_inner = tk.Frame(conn_frame, bg=CARD)
+    conn_inner.pack(fill="x", padx=20, pady=15)
 
+    # IP + Port side by side
+    fields_row = tk.Frame(conn_inner, bg=CARD)
+    fields_row.pack(fill="x")
 
-    test_button = tk.Button(
-        root,
-        text="Test",
-        command=packet_test,
-        font=("Helvetica", 45, "bold"),
-        bg="#4a90d9",
-        fg="white",
-        relief="flat",
-        padx=60,
-        pady=20,
-        cursor="hand2"
-    )
-    test_button.pack(pady=(60, 0))
+    ip_col = tk.Frame(fields_row, bg=CARD)
+    ip_col.pack(side="left", expand=True, fill="x", padx=(0, 20))
+    tk.Label(ip_col, text="IP", bg=CARD, fg=FG_DIM,
+             font=("Courier New", 11, "bold")).pack(anchor="w")
+    ip_input = make_entry(ip_col, width=28)
+    ip_input.pack(fill="x", ipady=6, pady=(4, 0))
+
+    port_col = tk.Frame(fields_row, bg=CARD)
+    port_col.pack(side="left", expand=True, fill="x")
+    tk.Label(port_col, text="Port", bg=CARD, fg=FG_DIM,
+             font=("Courier New", 11, "bold")).pack(anchor="w")
+    port_input = make_entry(port_col, width=28)
+    port_input.pack(fill="x", ipady=6, pady=(4, 0))
+
+    # Connection buttons row
+    conn_btns = tk.Frame(conn_inner, bg=CARD)
+    conn_btns.pack(fill="x", pady=(14, 0))
+
+    def use_device():
+        ip_input.delete(0, tk.END)
+        port_input.delete(0, tk.END)
+        ip_input.insert(0, "127.0.0.1")
+        port_input.insert(0, "8080")
+
+    def use_last():
+        pass  # wire to your JSON loader
+
+    def add_connection():
+        pass  # wire to your JSON saver
+
+    make_button(conn_btns, "Use Device",        command=use_device).pack(side="left", padx=(0,10))
+    make_button(conn_btns, "Use Last Connection",command=use_last).pack(side="left", padx=(0,10))
+    make_button(conn_btns, "Add New Connection", command=add_connection).pack(side="left")
+
+    # ── Packet loss section ──────────────────────────────────────────
+    pkt_frame = section_frame(root, pady=8)
+    pkt_inner = tk.Frame(pkt_frame, bg=CARD)
+    pkt_inner.pack(fill="x", padx=20, pady=15)
+
+    tk.Label(pkt_inner, text="% Of Packet Loss", bg=CARD, fg=FG_DIM,
+             font=("Courier New", 11, "bold")).pack(anchor="w")
+
+    pkt_row = tk.Frame(pkt_inner, bg=CARD)
+    pkt_row.pack(fill="x", pady=(4, 0))
+
+    pkt_input = make_entry(pkt_row, width=28)
+    pkt_input.pack(side="left", ipady=6, padx=(0, 14))
+
+    def drop_packets():
+        val = pkt_input.get().strip()
+        print(f"Dropping {val}% of packets")
+
+    make_button(pkt_row, "Drop Packets", command=drop_packets, accent=True, width=16).pack(side="left")
+
+    # ── Send section ─────────────────────────────────────────────────
+    send_frame = section_frame(root, pady=8)
+    send_inner = tk.Frame(send_frame, bg=CARD)
+    send_inner.pack(fill="x", padx=20, pady=15)
+
+    tk.Label(send_inner, text="Actions", bg=CARD, fg=FG_DIM,
+             font=("Courier New", 11, "bold")).pack(anchor="w", pady=(0, 10))
+
+    send_btns = tk.Frame(send_inner, bg=CARD)
+    send_btns.pack(fill="x")
+
+    def send_hello():
+        ip   = ip_input.get().strip()
+        port = port_input.get().strip()
+        print(f"Sending hello to {ip}:{port}")
+        # client_udp.send(ip, int(port))
+
+    def send_packets():
+        ip   = ip_input.get().strip()
+        port = port_input.get().strip()
+        print(f"Sending packets to {ip}:{port}")
+        # client_udp.test(ip, int(port))
+
+    def send_file():
+        print("Send file")
+
+    make_button(send_btns, "Send Hello",   command=send_hello,   width=16).pack(side="left", padx=(0,10))
+    make_button(send_btns, "Send Packets", command=send_packets, width=16).pack(side="left", padx=(0,10))
+    make_button(send_btns, "Send File",    command=send_file,    width=16).pack(side="left")
+
+    # ── Status bar ───────────────────────────────────────────────────
+    status_bar = tk.Frame(root, bg=ACCENT, height=30)
+    status_bar.pack(fill="x", side="bottom")
+    status_bar.pack_propagate(False)
+    tk.Label(status_bar, text="● idle",
+             bg=ACCENT, fg=FG_DIM,
+             font=("Courier New", 9)).pack(side="left", padx=15, pady=6)
 
     root.mainloop()
 
