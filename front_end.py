@@ -1,8 +1,7 @@
 import tkinter as tk
 from tkinter import font as tkfont
+from client import UDP_Client
 
-# Placeholder imports - swap in your real client when ready
-# from client import UDP_Client
 
 def main():
     root = tk.Tk()
@@ -10,7 +9,7 @@ def main():
     root.geometry("1100x750")
     root.configure(background="#1a1a2e")
     root.resizable(False, False)
-
+    client = UDP_Client()
     # ── Colour palette ──────────────────────────────────────────────
     BG          = "#1a1a2e"
     CARD        = "#16213e"
