@@ -13,8 +13,18 @@ class UDP_Client:
         
         header = self.struct.pack('!Bd',header_packet_num,timestamp)
         return header
-    
-    def test(self,server_address= "127.0.0.1", port=8080):
+
+    def set_udp_values(self,ip,port) -> None:
+        self.ip = str(ip)
+        self.port = int(port)
+
+
+    def get_udp_values(self,ip,port):
+        return self.ip, self.port
+
+
+
+    def test(self,server_address, port):
         i = 0
         count = 0
         for i in range(1,101):
