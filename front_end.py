@@ -162,13 +162,13 @@ def main():
         ip   = ip_input.get().strip()
         port = port_input.get().strip()
         print(f"Sending hello to {ip}:{port}")
-        # client_udp.send(ip, int(port))
+        
 
     def send_packets():
         ip   = ip_input.get().strip()
         port = port_input.get().strip()
         print(f"Sending packets to {ip}:{port}")
-        # client_udp.test(ip, int(port))
+        
 
     def send_file():
         print("Send file")
