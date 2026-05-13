@@ -53,7 +53,11 @@ class UDP_Client:
         return self.packets_after_dropped
 
     def send_packets(self):
+        sending_packets = self.get_drop_packets()
 
+        for i in range(0,101):
+            num = self.random.randint(0,100)
+            if (num <= sending_packets):
 
 
     def test(self,server_address, port):
