@@ -175,8 +175,7 @@ def main():
         
 
     def send_packets():
-        ip   = ip_input.get().strip()
-        port = port_input.get().strip()
+        ip, port = client.get_udp_values()
         print(f"Sending packets to {ip}:{port}")
         
 
