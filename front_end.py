@@ -115,6 +115,7 @@ def main():
         port_input.delete(0, tk.END)
         ip_input.insert(0, "127.0.0.1")
         port_input.insert(0, "8080")
+        client.set_udp_values("127.0.0.1", 8080)
         
 
     def use_last():
