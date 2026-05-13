@@ -28,7 +28,8 @@ class UDP_Client:
         self.port = port
         return ip,port
     
-    def 
+    def append_to_json(self,ip,port):
+        
 
     def set_udp_values(self,ip,port) -> None:
         print(ip)
