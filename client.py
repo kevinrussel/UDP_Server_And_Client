@@ -9,6 +9,7 @@ class UDP_Client:
         self.udp_client_socket = self.socket.socket(self.socket.AF_INET,self.socket.SOCK_DGRAM)
         self.ip = None 
         self.port  = None
+        self.packets_after_dropped = 100
 
     def open_json_at_idex(self,index: int):
         with open("connections.json") as file:
@@ -46,8 +47,8 @@ class UDP_Client:
         return self.ip, self.port
 
     def set_drop_packets(self,packets):
-        
-
+        self.packets_after_dropped = 100 - packets
+    
     def test(self,server_address, port):
         i = 0
         count = 0
@@ -60,7 +61,7 @@ class UDP_Client:
             self.udp_client_socket.sendto(message,(server_address,port))
         print(f'packet drop count is {count}')
 
-    def send(self):
+    def send_hello(self):
         server_address,port = self.get_udp_values()
         header = self.create_header(0)
         message = header + b"This is a handshake test."

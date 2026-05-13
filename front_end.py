@@ -171,7 +171,7 @@ def main():
     def send_hello():
         ip,port = client.get_udp_values()
         print(f"Sending hello to {ip}:{port}")
-        client.send()
+        client.send_hello()
         
 
     def send_packets():
