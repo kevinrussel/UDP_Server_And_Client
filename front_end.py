@@ -154,7 +154,7 @@ def main():
     def drop_packets():
         val = pkt_input.get().strip()
         print(f"Dropping {val}% of packets")
-
+        client.set_drop_packets(val)
     make_button(pkt_row, "Drop Packets", command=drop_packets, accent=True, width=16).pack(side="left")
 
     # ── Send section ─────────────────────────────────────────────────
@@ -177,7 +177,7 @@ def main():
     def send_packets():
         ip, port = client.get_udp_values()
         print(f"Sending packets to {ip}:{port}")
-        
+        client.send_packets()
 
     def send_file():
         print("Send file")
