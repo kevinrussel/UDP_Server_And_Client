@@ -39,10 +39,7 @@ class UDP_Client:
             self.json.dump(file_data,f, indent=4)
         
         ip,port = self.set_known_json_value(-1)
-        print(ip)
-        print(port)
-
-
+        return
   
 
     def get_udp_values(self,ip,port):
