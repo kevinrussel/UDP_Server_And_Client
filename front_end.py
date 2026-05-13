@@ -116,7 +116,7 @@ def main():
         ip,port = client.set_known_json_value(0)
         ip_input.insert(0, ip)
         port_input.insert(0, port)
-        client.set_udp_values("127.0.0.1", 8080)
+        
         
 
     def use_last():
@@ -125,7 +125,7 @@ def main():
         ip,port = client.set_known_json_value(-1)
         ip_input.insert(0, ip)
         port_input.insert(0, port)
-        client.set_udp_values("127.0.0.1", 8080)
+        
 
 
     def add_connection():
