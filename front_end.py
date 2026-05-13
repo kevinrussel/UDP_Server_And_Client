@@ -129,8 +129,12 @@ def main():
 
 
     def add_connection():
-        pass  # wire to your JSON saver
-
+        ip = ip_input.get()
+        port = port_input.get()
+        print(ip)
+        print(port)
+        client.set_udp_values(ip,port)
+    
     make_button(conn_btns, "Use Device",        command=use_device).pack(side="left", padx=(0,10))
     make_button(conn_btns, "Use Last Connection",command=use_last).pack(side="left", padx=(0,10))
     make_button(conn_btns, "Add New Connection", command=add_connection).pack(side="left")

@@ -31,18 +31,19 @@ class UDP_Client:
 
     def set_udp_values(self,ip,port) -> None:
         data = {"ip": ip, "port": port}
-        with open("connections.json", "a") as file:
+        with open("connections.json", "r") as file:
             file_data = self.json.load(file)
-            file["connections"].append(data)
-
-
-
-
+        
+        file_data["connections"].append(data)
+        with open("connections.json","w") as f:
+            self.json.dump(file_data,f, indent=4)
+        
+        ip,port = self.set_known_json_value(-1)
         print(ip)
         print(port)
-        self.ip = str(ip)
-        self.port = int(port)
-        self.open_json_at_idex(0)
+
+
+  
 
     def get_udp_values(self,ip,port):
         return self.ip, self.port
