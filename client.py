@@ -49,6 +49,13 @@ class UDP_Client:
     def set_drop_packets(self,packets):
         self.packets_after_dropped = 100 - packets
     
+    def get_drop_packets(self):
+        return self.packets_after_dropped
+
+    def send_packets(self):
+
+
+
     def test(self,server_address, port):
         i = 0
         count = 0
