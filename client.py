@@ -10,23 +10,29 @@ class UDP_Client:
         self.ip = None 
         self.port  = None
 
-    def open_json_at_idex(index: int):
+    def open_json_at_idex(self,index: int):
         with open("connections.json") as file:
-            connections = json.load(file)
-            print(connections)
+            connections = self.json.load(file)
+            connections = connections["connections"][index]
+            return connections["ip"], connections["port"]
         
+
     def create_header(self,header_packet_num):
         timestamp = self.time.time()
-        
         header = self.struct.pack('!Bd',header_packet_num,timestamp)
         return header
 
+    def set_known_json_value(self,index):
+        ip,port = self.open_json_at_idex(index)
+        self.ip = ip
+        self.port = port
+        return ip,port
     def set_udp_values(self,ip,port) -> None:
         print(ip)
         print(port)
         self.ip = str(ip)
         self.port = int(port)
-
+        self.open_json_at_idex(0)
 
     def get_udp_values(self,ip,port):
         return self.ip, self.port
