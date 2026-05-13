@@ -45,7 +45,8 @@ class UDP_Client:
     def get_udp_values(self):
         return self.ip, self.port
 
-
+    def set_drop_packets(self,packets):
+        
 
     def test(self,server_address, port):
         i = 0
