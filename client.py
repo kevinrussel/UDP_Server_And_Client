@@ -17,6 +17,8 @@ class UDP_Client:
         return header
 
     def set_udp_values(self,ip,port) -> None:
+        print(ip)
+        print(port)
         self.ip = str(ip)
         self.port = int(port)
 
