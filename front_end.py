@@ -152,7 +152,7 @@ def main():
     pkt_input.pack(side="left", ipady=6, padx=(0, 14))
 
     def drop_packets():
-        val = pkt_input.get().strip()
+        val = int(pkt_input.get().strip())
         print(f"Dropping {val}% of packets")
         client.set_drop_packets(val)
     make_button(pkt_row, "Drop Packets", command=drop_packets, accent=True, width=16).pack(side="left")
