@@ -42,7 +42,7 @@ class UDP_Client:
         return
   
 
-    def get_udp_values(self,ip,port):
+    def get_udp_values(self):
         return self.ip, self.port
 
 
