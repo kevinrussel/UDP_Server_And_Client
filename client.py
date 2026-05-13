@@ -9,6 +9,11 @@ class UDP_Client:
         self.udp_client_socket = self.socket.socket(self.socket.AF_INET,self.socket.SOCK_DGRAM)
         self.ip = None 
         self.port  = None
+
+    def open_json_at_idex(index: int):
+        with open("connections.json") as file:
+            connections = json.load(file)
+            print(connections)
         
     def create_header(self,header_packet_num):
         timestamp = self.time.time()
