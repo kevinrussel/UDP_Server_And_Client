@@ -27,11 +27,17 @@ class UDP_Client:
         self.ip = ip
         self.port = port
         return ip,port
-    
-    def append_to_json(self,ip,port):
-        
+
 
     def set_udp_values(self,ip,port) -> None:
+        data = {"ip": ip, "port": port}
+        with open("connections.json", "a") as file:
+            file_data = self.json.load(file)
+            file["connections"].append(data)
+
+
+
+
         print(ip)
         print(port)
         self.ip = str(ip)
