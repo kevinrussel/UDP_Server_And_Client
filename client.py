@@ -28,8 +28,8 @@ class UDP_Client:
         self.port = port
         return ip,port
     
+    def 
 
-    
     def set_udp_values(self,ip,port) -> None:
         print(ip)
         print(port)
