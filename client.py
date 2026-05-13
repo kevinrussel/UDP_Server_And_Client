@@ -59,7 +59,8 @@ class UDP_Client:
             self.udp_client_socket.sendto(message,(server_address,port))
         print(f'packet drop count is {count}')
 
-    def send(self, server_address = "127.0.0.1",port=8080):
+    def send(self):
+        server_address,port = self.get_udp_values()
         header = self.create_header(0)
         message = header + b"This is a handshake test."
         self.udp_client_socket.sendto(message,(server_address,port))
