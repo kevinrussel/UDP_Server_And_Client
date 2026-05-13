@@ -122,7 +122,7 @@ def main():
     def use_last():
         ip_input.delete(0, tk.END)
         port_input.delete(0, tk.END)
-        ip,port = client.set_known_json_value(0)
+        ip,port = client.set_known_json_value(-1)
         ip_input.insert(0, ip)
         port_input.insert(0, port)
         client.set_udp_values("127.0.0.1", 8080)
