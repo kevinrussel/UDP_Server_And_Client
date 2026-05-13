@@ -169,8 +169,7 @@ def main():
     send_btns.pack(fill="x")
 
     def send_hello():
-        ip   = ip_input.get().strip()
-        port = port_input.get().strip()
+        ip,port = client.get_udp_values()
         print(f"Sending hello to {ip}:{port}")
         
 
