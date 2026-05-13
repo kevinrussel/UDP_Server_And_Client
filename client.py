@@ -56,6 +56,7 @@ class UDP_Client:
         sending_packets = self.get_drop_packets()
         server_address, port = self.get_udp_values()
         total_dropped_count = 0
+        
         for header_num in range(0,101):
             num = self.random.randint(0,100)
             if (num > sending_packets):
