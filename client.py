@@ -65,17 +65,7 @@ class UDP_Client:
             self.udp_client_socket.sendto(message,(server_address,port))
         print(f"total packet drop count is {count}")
 
-    def test(self,server_address, port):
-        i = 0
-        count = 0
-        for i in range(1,101):
-            num = self.random.randint(0,100)
-            if(num <= 10):
-                count +=1
-                continue            
-            message = self.create_header(i) + b"This is a Test Packet."
-            self.udp_client_socket.sendto(message,(server_address,port))
-        print(f'packet drop count is {count}')
+ 
 
     def send_hello(self):
         server_address,port = self.get_udp_values()
