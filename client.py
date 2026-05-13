@@ -3,11 +3,13 @@ class UDP_Client:
     import struct
     import random
     import time
+    import json
+
     def __init__(self):
         self.udp_client_socket = self.socket.socket(self.socket.AF_INET,self.socket.SOCK_DGRAM)
         self.ip = None 
         self.port  = None
-
+        
     def create_header(self,header_packet_num):
         timestamp = self.time.time()
         
