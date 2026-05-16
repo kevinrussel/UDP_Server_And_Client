@@ -1,7 +1,8 @@
 import tkinter as tk
 from tkinter import font as tkfont
-from client import UDP_Client
 
+# Placeholder imports - swap in your real client when ready
+# from client import UDP_Client
 
 def main():
     root = tk.Tk()
@@ -9,7 +10,7 @@ def main():
     root.geometry("1100x750")
     root.configure(background="#1a1a2e")
     root.resizable(False, False)
-    client = UDP_Client()
+
     # ── Colour palette ──────────────────────────────────────────────
     BG          = "#1a1a2e"
     CARD        = "#16213e"
@@ -113,25 +114,14 @@ def main():
     def use_device():
         ip_input.delete(0, tk.END)
         port_input.delete(0, tk.END)
-        ip,port = client.set_known_json_value(0)
-        ip_input.insert(0, ip)
-        port_input.insert(0, port)
-        
-        
+        ip_input.insert(0, "127.0.0.1")
+        port_input.insert(0, "8080")
 
     def use_last():
-        ip_input.delete(0, tk.END)
-        port_input.delete(0, tk.END)
-        ip,port = client.set_known_json_value(-1)
-        ip_input.insert(0, ip)
-        port_input.insert(0, port)
-        
-
+        pass  # wire to your JSON loader
 
     def add_connection():
-        ip = ip_input.get()
-        port = port_input.get()
-        client.set_udp_values(ip,port)
+        pass  # wire to your JSON saver
 
     make_button(conn_btns, "Use Device",        command=use_device).pack(side="left", padx=(0,10))
     make_button(conn_btns, "Use Last Connection",command=use_last).pack(side="left", padx=(0,10))
@@ -148,13 +138,18 @@ def main():
     pkt_row = tk.Frame(pkt_inner, bg=CARD)
     pkt_row.pack(fill="x", pady=(4, 0))
 
-    pkt_input = make_entry(pkt_row, width=28)
+    pkt_input = make_entry(pkt_row, width=18)
     pkt_input.pack(side="left", ipady=6, padx=(0, 14))
 
+    tk.Label(pkt_row, text="# Of Packets", bg=CARD, fg=FG_DIM,
+             font=("Courier New", 11, "bold")).pack(side="left", padx=(0, 6))
+    num_packets_input = make_entry(pkt_row, width=18)
+    num_packets_input.pack(side="left", ipady=6, padx=(0, 14))
+
     def drop_packets():
-        val = int(pkt_input.get().strip())
+        val = pkt_input.get().strip()
         print(f"Dropping {val}% of packets")
-        client.set_drop_packets(val)
+
     make_button(pkt_row, "Drop Packets", command=drop_packets, accent=True, width=16).pack(side="left")
 
     # ── Send section ─────────────────────────────────────────────────
@@ -169,15 +164,16 @@ def main():
     send_btns.pack(fill="x")
 
     def send_hello():
-        ip,port = client.get_udp_values()
+        ip   = ip_input.get().strip()
+        port = port_input.get().strip()
         print(f"Sending hello to {ip}:{port}")
-        client.send_hello()
-        
+        # client_udp.send(ip, int(port))
 
     def send_packets():
-        ip, port = client.get_udp_values()
+        ip   = ip_input.get().strip()
+        port = port_input.get().strip()
         print(f"Sending packets to {ip}:{port}")
-        client.send_packets()
+        # client_udp.test(ip, int(port))
 
     def send_file():
         print("Send file")
