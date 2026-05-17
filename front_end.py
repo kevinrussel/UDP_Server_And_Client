@@ -127,6 +127,9 @@ def main():
         
 
     def add_connection():
+        ip = ip_input.get().strip()
+        port = port_input.get().strip()
+        print(f"ip {ip} and port {port}")
         pass  # wire to your JSON saver
 
     make_button(conn_btns, "Use Device",        command=use_device).pack(side="left", padx=(0,10))
@@ -177,6 +180,7 @@ def main():
     send_btns.pack(fill="x")
 
     def send_hello():
+        ## TODO fix this.
         ip   = ip_input.get().strip()
         port = port_input.get().strip()
         print(f"Sending hello to {ip}:{port}")
