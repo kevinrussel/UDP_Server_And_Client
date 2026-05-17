@@ -47,10 +47,13 @@ class UDP_Client:
         return self.ip, self.port
 
     def set_drop_packets(self,packet_loss = None,total_packets = None):
-        self.total_num_of_packets = total_packets
-        self.percent_of_packets_dropped = packet_loss
+        if(packet_loss == None):
+            packet_loss = self.percent_of_packets_dropped
+        if (total_packets == None):
+            total_packets = self.total_num_of_packets
         self.total_num_of_packets = total_packets - (total_packets * packet_loss)
-        print("Total packets sending is {}")
+        self.percent_of_packets_dropped = packet_loss
+        print(f"Total packets sending is {self.total_num_of_packets}")
     
     def get_drop_packets(self):
         return self.total_num_of_packets
