@@ -52,7 +52,7 @@ class UDP_Client:
             packet_loss = self.percent_of_packets_dropped
         if (total_packets == None):
             total_packets = self.total_num_of_packets
-        self.total_num_of_packets = total_packets - (total_packets * packet_loss)
+        self.total_num_of_packets = int (total_packets - (total_packets * (packet_loss / 100)))
         self.percent_of_packets_dropped = packet_loss
         print(f"Total packets sending is {self.total_num_of_packets}")
     

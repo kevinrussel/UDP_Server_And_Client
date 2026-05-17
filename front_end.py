@@ -188,8 +188,9 @@ def main():
     def send_packets():
         ip   = ip_input.get().strip()
         port = port_input.get().strip()
-        packet_loss_val = pkt_input.get().strip()
-        num_pack = num_packets_input.get().strip()
+        packet_loss_val = float (pkt_input.get().strip())
+        num_pack =  int (num_packets_input.get().strip())
+        client_udp.set_drop_packets(packet_loss_val,num_pack)
         print(f"Sending packets to {ip}:{port}")
         # client_udp.test(ip, int(port))
 
