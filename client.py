@@ -10,7 +10,7 @@ class UDP_Client:
         self.ip = None 
         self.port  = None
         self.total_num_of_packets = 100
-        self.percent_of_packets_dropped = 0
+        self.total_packets_after_drop = 100
         
 
     def open_json_at_idex(self,index: int):
