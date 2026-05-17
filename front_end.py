@@ -128,7 +128,7 @@ def main():
 
     def add_connection():
         ip = ip_input.get().strip()
-        port = port_input.get().strip()
+        port = int (port_input.get().strip())
         print(f"ip {ip} and port {port}")
         client_udp.set_new_udp_values(ip,port)
 
@@ -192,6 +192,7 @@ def main():
         num_pack =  int (num_packets_input.get().strip())
         client_udp.set_drop_packets(packet_loss_val,num_pack)
         print(f"Sending packets to {ip}:{port}")
+        client_udp.send_packets()
         # client_udp.test(ip, int(port))
 
     def send_file():
