@@ -130,7 +130,7 @@ def main():
         ip = ip_input.get().strip()
         port = port_input.get().strip()
         print(f"ip {ip} and port {port}")
-        pass  # wire to your JSON saver
+        client_udp.set_new_udp_values(ip,port)
 
     make_button(conn_btns, "Use Device",        command=use_device).pack(side="left", padx=(0,10))
     make_button(conn_btns, "Use Last Connection",command=use_last).pack(side="left", padx=(0,10))
