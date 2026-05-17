@@ -119,7 +119,12 @@ def main():
         port_input.insert(0, port)
 
     def use_last():
-        pass  # wire to your JSON loader
+        ip,port = client_udp.set_known_json_value(-1)
+        ip_input.delete(0, tk.END)
+        port_input.delete(0, tk.END)
+        ip_input.insert(0, ip)
+        port_input.insert(0, port)
+        
 
     def add_connection():
         pass  # wire to your JSON saver
