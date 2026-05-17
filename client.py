@@ -11,6 +11,7 @@ class UDP_Client:
         self.port  = None
         self.total_num_of_packets = 100
         self.percent_of_packets_dropped = 0
+        print("hitting")
 
     def open_json_at_idex(self,index: int):
         with open("connections.json") as file:

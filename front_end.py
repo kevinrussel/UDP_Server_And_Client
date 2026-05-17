@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import font as tkfont
 
 # Placeholder imports - swap in your real client when ready
-# from client import UDP_Client
+from client import UDP_Client
 
 def main():
     root = tk.Tk()
@@ -10,7 +10,7 @@ def main():
     root.geometry("1100x750")
     root.configure(background="#1a1a2e")
     root.resizable(False, False)
-
+    client_udp = UDP_Client()
     # ── Colour palette ──────────────────────────────────────────────
     BG          = "#1a1a2e"
     CARD        = "#16213e"
@@ -154,6 +154,7 @@ def main():
         print(f"Dropping {val}% of packets")
         num_pack = num_packets_input.get().strip()
         print(f"Total Number of Packets {num_pack}")
+        
     btn_col = tk.Frame(pkt_row, bg=CARD)
     btn_col.pack(side="left", anchor="s")
     make_button(btn_col, "Drop Packets", command=drop_packets, accent=True, width=16).pack(ipady=3)
