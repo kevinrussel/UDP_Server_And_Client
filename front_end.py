@@ -130,16 +130,15 @@ def main():
     # ── Packet loss section ──────────────────────────────────────────
     pkt_frame = section_frame(root, pady=8)
     pkt_inner = tk.Frame(pkt_frame, bg=CARD)
-    pkt_inner.pack(fill="x", padx=20, pady=10)
-
-    tk.Label(pkt_inner, text="% Of Packet Loss", bg=CARD, fg=FG_DIM,
-             font=("Courier New", 11, "bold")).pack(anchor="w")
+    pkt_inner.pack(fill="x", padx=20, pady=15)
 
     pkt_row = tk.Frame(pkt_inner, bg=CARD)
     pkt_row.pack(fill="x", pady=(4, 0))
 
     pkt_loss_col = tk.Frame(pkt_row, bg=CARD)
     pkt_loss_col.pack(side="left", padx=(0, 20), anchor="s")
+    tk.Label(pkt_loss_col, text="% Of Packet Loss", bg=CARD, fg=FG_DIM,
+             font=("Courier New", 11, "bold")).pack(anchor="w")
     pkt_input = make_entry(pkt_loss_col, width=18)
     pkt_input.pack(ipady=6)
 
