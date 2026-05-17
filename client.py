@@ -9,7 +9,8 @@ class UDP_Client:
         self.udp_client_socket = self.socket.socket(self.socket.AF_INET,self.socket.SOCK_DGRAM)
         self.ip = None 
         self.port  = None
-        self.packets_after_dropped = 100
+        self.total_num_of_packets = 100
+        self.packets_after_dropped = 1
 
     def open_json_at_idex(self,index: int):
         with open("connections.json") as file:
@@ -47,6 +48,7 @@ class UDP_Client:
         return self.ip, self.port
 
     def set_drop_packets(self,packets):
+        # self.packets_after_dropped = 
         self.packets_after_dropped = 100 - packets
     
     def get_drop_packets(self):
