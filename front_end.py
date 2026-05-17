@@ -180,11 +180,10 @@ def main():
     send_btns.pack(fill="x")
 
     def send_hello():
-        ## TODO fix this.
         ip   = ip_input.get().strip()
         port = port_input.get().strip()
         print(f"Sending hello to {ip}:{port}")
-        # client_udp.send(ip, int(port))
+        client_udp.send_hello()
 
     def send_packets():
         ip   = ip_input.get().strip()
