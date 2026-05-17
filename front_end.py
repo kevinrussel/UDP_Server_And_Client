@@ -130,7 +130,7 @@ def main():
     # ── Packet loss section ──────────────────────────────────────────
     pkt_frame = section_frame(root, pady=8)
     pkt_inner = tk.Frame(pkt_frame, bg=CARD)
-    pkt_inner.pack(fill="x", padx=20, pady=15)
+    pkt_inner.pack(fill="x", padx=20, pady=10)
 
     tk.Label(pkt_inner, text="% Of Packet Loss", bg=CARD, fg=FG_DIM,
              font=("Courier New", 11, "bold")).pack(anchor="w")
@@ -139,12 +139,12 @@ def main():
     pkt_row.pack(fill="x", pady=(4, 0))
 
     pkt_loss_col = tk.Frame(pkt_row, bg=CARD)
-    pkt_loss_col.pack(side="left", padx=(0, 20))
+    pkt_loss_col.pack(side="left", padx=(0, 20), anchor="s")
     pkt_input = make_entry(pkt_loss_col, width=18)
     pkt_input.pack(ipady=6)
 
     num_pkt_col = tk.Frame(pkt_row, bg=CARD)
-    num_pkt_col.pack(side="left", padx=(0, 20))
+    num_pkt_col.pack(side="left", padx=(0, 20), anchor="s")
     tk.Label(num_pkt_col, text="# Of Packets", bg=CARD, fg=FG_DIM,
              font=("Courier New", 11, "bold")).pack(anchor="w")
     num_packets_input = make_entry(num_pkt_col, width=18)
@@ -155,9 +155,8 @@ def main():
         print(f"Dropping {val}% of packets")
 
     btn_col = tk.Frame(pkt_row, bg=CARD)
-    btn_col.pack(side="left")
-    tk.Label(btn_col, text=" ", bg=CARD).pack()
-    make_button(btn_col, "Drop Packets", command=drop_packets, accent=True, width=16).pack()
+    btn_col.pack(side="left", anchor="s")
+    make_button(btn_col, "Drop Packets", command=drop_packets, accent=True, width=16).pack(ipady=3)
 
     # ── Send section ─────────────────────────────────────────────────
     send_frame = section_frame(root, pady=8)
