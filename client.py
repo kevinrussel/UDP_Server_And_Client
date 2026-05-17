@@ -58,13 +58,13 @@ class UDP_Client:
     
 
     def send_packets(self):
-        sending_packets = self.get_drop_packets()
         server_address, port = self.get_udp_values()
         total_dropped_count = 0
-        self.total_num_of_packets
-        for header_num in range(0,self.total_num_of_packets):
+        total_packets = self.total_num_of_packets
+        packets_that_will_be_dropped = self.total_packets_that_will_be_dropped
+        for header_num in range(0,total_packets):
             num = self.random.randint(0,100)
-            if (num > sending_packets):
+            if (num < packets_that_will_be_dropped):
                 total_dropped_count +=1
                 continue
             message = self.create_header(header_num) + b"This is a Test Packet"
