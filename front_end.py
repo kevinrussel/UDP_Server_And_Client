@@ -152,7 +152,8 @@ def main():
     def drop_packets():
         val = pkt_input.get().strip()
         print(f"Dropping {val}% of packets")
-
+        num_pack = num_packets_input.get().strip()
+        print(f"Total Number of Packets {num_pack}")
     btn_col = tk.Frame(pkt_row, bg=CARD)
     btn_col.pack(side="left", anchor="s")
     make_button(btn_col, "Drop Packets", command=drop_packets, accent=True, width=16).pack(ipady=3)
