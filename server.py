@@ -22,9 +22,8 @@ class udp_server:
         num = 1
         while True:
             message,address = self.udp_server_socket.recvfrom(1024)
-            self.threading.Thread(target=self.handle_recieved_message, args = (message,num), daemon=True).start()
+            # self.threading.Thread(target=self.handle_recieved_message, args = (message,num), daemon=True).start()
             num = num + 1
-
 
     def start_udp_server(self):
         self.udp_server_socket = self.socket.socket(self.socket.AF_INET,self.socket.SOCK_DGRAM)

@@ -31,6 +31,7 @@ class UDP_Client:
         self.port = port
         return ip,port
 
+
     def set_new_udp_values(self,ip,port) -> None:
         data = {"ip": ip, "port": port}
         with open("connections.json", "r") as file:
