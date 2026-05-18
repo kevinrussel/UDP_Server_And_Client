@@ -22,7 +22,7 @@ class UDP_Client:
 
     def create_header(self,header_packet_num):
         timestamp = self.time.time()
-        header = self.struct.pack('!Bd',header_packet_num,timestamp)
+        header = self.struct.pack('!Hd',header_packet_num,timestamp)
         return header
 
     def set_known_json_value(self,index):

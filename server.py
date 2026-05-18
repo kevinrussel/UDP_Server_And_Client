@@ -7,9 +7,9 @@ class udp_server:
     
 
     def handle_recieved_message(self,message):
-        header = message[:9]
-        packet_num = self.struct.unpack("!Bd", header)[0]
-        timestamp = (self.time.time()) - self.struct.unpack("!Bd", header)[1]
+        header = message[:10]
+        packet_num = self.struct.unpack("!Hd", header)[0]
+        timestamp = (self.time.time()) - self.struct.unpack("!Hd", header)[1]
         message = (message[9:]).decode("utf-8")
         return packet_num,timestamp,message 
     
