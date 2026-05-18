@@ -52,8 +52,10 @@ class UDP_Client:
             packet_loss = self.percent_of_packets_dropped
         if (total_packets == None):
             total_packets = self.total_num_of_packets
+
+
         self.total_packets_that_will_be_dropped = int (total_packets * (packet_loss / 100))
-        print(f"Total packets sending is {self.total_packets_that_will_be_dropped}")
+        print(f"Total packets that will be dropped is {self.total_packets_that_will_be_dropped}")
     
     
 
