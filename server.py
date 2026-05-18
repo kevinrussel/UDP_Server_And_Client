@@ -10,7 +10,7 @@ class udp_server:
         header = message[:10]
         packet_num = self.struct.unpack("!Hd", header)[0]
         timestamp = (self.time.time()) - self.struct.unpack("!Hd", header)[1]
-        message = (message[9:]).decode("utf-8")
+        message = (message[10:]).decode("utf-8")
         return packet_num,timestamp,message 
     
 

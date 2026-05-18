@@ -35,7 +35,6 @@ class UDP_Client:
         data = {"ip": ip, "port": port}
         with open("connections.json", "r") as file:
             file_data = self.json.load(file)
-        
         file_data["connections"].append(data)
         with open("connections.json","w") as f:
             self.json.dump(file_data,f, indent=4)
@@ -52,8 +51,6 @@ class UDP_Client:
             packet_loss = self.percent_of_packets_dropped
         if (total_packets == None):
             total_packets = self.total_num_of_packets
-
-
         self.total_packets_that_will_be_dropped = int (total_packets * (packet_loss / 100))
         print(f"Total packets that will be dropped is {self.total_packets_that_will_be_dropped}")
         self.total_num_of_packets = total_packets
@@ -67,7 +64,6 @@ class UDP_Client:
         for header_num in range(0,total_packets):
             if(packets_that_will_be_dropped > 0):
                 num = self.random.randint(0,100)
-                print(num)
                 if(num < 50):
                     total_dropped_count +=1
                     packets_that_will_be_dropped = packets_that_will_be_dropped -1
