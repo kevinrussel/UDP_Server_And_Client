@@ -56,7 +56,7 @@ class UDP_Client:
 
         self.total_packets_that_will_be_dropped = int (total_packets * (packet_loss / 100))
         print(f"Total packets that will be dropped is {self.total_packets_that_will_be_dropped}")
-    
+        self.total_num_of_packets = total_packets
     
 
     def send_packets(self):
@@ -67,6 +67,7 @@ class UDP_Client:
         for header_num in range(0,total_packets):
             if(packets_that_will_be_dropped > 0):
                 num = self.random.randint(0,100)
+                print(num)
                 if(num < 50):
                     total_dropped_count +=1
                     packets_that_will_be_dropped = packets_that_will_be_dropped -1
