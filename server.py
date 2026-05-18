@@ -20,7 +20,7 @@ class udp_server:
             message,address = self.udp_server_socket.recvfrom(1024)
             packet_num,timestamp,message = self.handle_recieved_message(message)
             print(f' This packet is {packet_num}')
-            print(f'This is the time it took {timestamp}')
+            print(f'Time for packet travel: {timestamp}')
             print(message)                   
             print(f'Total Num of Recived packet is {num}\n')
             num = num + 1

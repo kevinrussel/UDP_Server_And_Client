@@ -64,6 +64,7 @@ class UDP_Client:
         total_dropped_count = 0
         total_packets = self.total_num_of_packets
         packets_that_will_be_dropped = self.total_packets_that_will_be_dropped
+        total_sent = 0
         for header_num in range(0,total_packets):
             message = self.create_header(header_num) + b"This is a Test Packet"
             if(packets_that_will_be_dropped > 0):
@@ -72,12 +73,14 @@ class UDP_Client:
                     total_dropped_count +=1
                     packets_that_will_be_dropped = packets_that_will_be_dropped -1
                 else:
+                    total_sent +=1
                     self.send_message(message,server_address,port)
             else:
+                total_sent +=1
                 self.send_message(message,server_address,port)
                 
         print(f"total packet drop count is {total_dropped_count}")
-
+        print(f"Total sent is {total_sent}")
  
 
     def send_hello(self):
