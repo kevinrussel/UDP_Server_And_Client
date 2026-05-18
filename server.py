@@ -9,8 +9,8 @@ class udp_server:
     def handle_recieved_message(self,message,num):
         header = message[:10]
         unpacked = self.struct.unpack("!HD",header)
-        packet_num = unpacked[0]
-        timestamp = (self.time.time()) - unpacked[1]
+        packet_num = self.struct.unpack("!Hd", header)[0]
+        timestamp = (self.time.time()) - self.struct.unpack("!Hd", header)[1]
         message = (message[10:]).decode("utf-8")
         print(f' This packet is {packet_num}')
         print(f'Time for packet travel: {timestamp}')
@@ -23,7 +23,7 @@ class udp_server:
         num = 1
         while True:
             message,address = self.udp_server_socket.recvfrom(1024)
-            self.threading.Thread(target=self.handle_recieved_message, args = (message,num), daemon=True).start()
+            # self.threading.Thread(target=self.handle_recieved_message, args = (message,num), daemon=True).start()
             num = num + 1
 
     def start_udp_server(self):
