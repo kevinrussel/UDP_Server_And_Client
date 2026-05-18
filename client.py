@@ -56,23 +56,26 @@ class UDP_Client:
         self.total_num_of_packets = total_packets
     
 
+    def send_message(self,message,server_address,port):
+        self.udp_client_socket.sendto(message,(server_address,port))
+
     def send_packets(self):
         server_address, port = self.get_udp_values()
         total_dropped_count = 0
         total_packets = self.total_num_of_packets
         packets_that_will_be_dropped = self.total_packets_that_will_be_dropped
         for header_num in range(0,total_packets):
+            message = self.create_header(header_num) + b"This is a Test Packet"
             if(packets_that_will_be_dropped > 0):
                 num = self.random.randint(0,100)
                 if(num < 50):
                     total_dropped_count +=1
                     packets_that_will_be_dropped = packets_that_will_be_dropped -1
                 else:
-                    message = self.create_header(header_num) + b"This is a Test Packet"
-                    self.udp_client_socket.sendto(message,(server_address,port))
+                    self.send_message(message,server_address,port)
             else:
                 message = self.create_header(header_num) + b"This is a Test Packet"
-                self.udp_client_socket.sendto(message,(server_address,port))
+                
         print(f"total packet drop count is {total_dropped_count}")
 
  
