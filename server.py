@@ -16,7 +16,7 @@ class udp_server:
 
     def udp_server_listen(self):
         num = 1
-        with ThreadPoolExecutor(max_workers=20) as executor:
+        with ThreadPoolExecutor(max_workers=8) as executor:
             futures = []
             while True:
                 try:
@@ -29,6 +29,8 @@ class udp_server:
 
     def start_udp_server(self):
         self.udp_server_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
+
+        self.udp_server_socket.setsockopt(socket.SOL_SOCKET,socket.SO_RCVBUF, 4 * 4 * 1024)
         self.udp_server_socket.bind(('',8080))
         self.udp_server_listen()
 
