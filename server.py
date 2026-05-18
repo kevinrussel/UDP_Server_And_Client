@@ -8,23 +8,24 @@ class udp_server:
     
     def handle_recieved_message(self,message):
         header = message[:10]
-        unpacked = self.struct.unpack("!HD",header)
-        packet_num = self.struct.unpack("!Hd", header)[0]
-        timestamp = (time.time()) - self.struct.unpack("!Hd", header)[1]
-        message = (message[10:]).decode("utf-8")
-        print(f' This packet is {packet_num}')
-        print(f'Time for packet travel: {timestamp}')
-        print(message)                   
+        packet_num,timestamp = self.struct.unpack("!Hd", header)
+        timestamp = time.time() - timestamp
+        message = (message[10:]).decode("utf-8")                   
         return packet_num,timestamp,message 
     
 
     def udp_server_listen(self):
         num = 1
-        with ThreadPoolExecutor(max_workers=8) as executor:
+        with ThreadPoolExecutor(max_workers=20) as executor:
+            futures = []
             while True:
-                message,address = self.udp_server_socket.recvfrom(1024)
-                executor.submit(self.handle_recieved_message,message)
-                num = num + 1
+                try:
+                    message,address = self.udp_server_socket.recvfrom(1024)
+                    futures.append(executor.submit(self.handle_recieved_message,message))
+                    num = num + 1
+                except KeyboardInterrupt:
+                    break
+        print(num)
 
     def start_udp_server(self):
         self.udp_server_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
