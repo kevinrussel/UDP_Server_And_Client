@@ -93,4 +93,4 @@ class UDP_Client:
 
 
     def send_file(self):
-        with open("hi.txt",)
+        with open("page.txt","r") as file
