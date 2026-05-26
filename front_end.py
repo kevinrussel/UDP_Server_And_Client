@@ -196,6 +196,8 @@ def main():
         # client_udp.test(ip, int(port))
 
     def send_file():
+        ip = ip_input.get().strip()
+        port = port_input.get().strip()
         print("Send file")
 
     make_button(send_btns, "Send Hello",   command=send_hello,   width=16).pack(side="left", padx=(0,10))
