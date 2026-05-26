@@ -89,3 +89,8 @@ class UDP_Client:
         header = self.create_header(0)
         message = header + b"This is a handshake test."
         self.udp_client_socket.sendto(message,(server_address,port))
+
+
+
+    def send_file(self):
+        with open("hi.txt",)
