@@ -198,6 +198,10 @@ def main():
     def send_file():
         ip = ip_input.get().strip()
         port = port_input.get().strip()
+        packet_loss_val = float (pkt_input.get().strip())
+        num_pack =  int (num_packets_input.get().strip())
+        client_udp.set_drop_packets(packet_loss_val,num_pack)
+        print(f"Sending packets to {ip}:{port}")
         print("Send file")
 
     make_button(send_btns, "Send Hello",   command=send_hello,   width=16).pack(side="left", padx=(0,10))
