@@ -94,5 +94,9 @@ class UDP_Client:
     #TODO: Fix this
     def send_file(self):
         with open("page.txt","r") as file:
-            
-        
+            while True:
+                char = file.read(1)
+                if not char:
+                    break
+                print(char)
+                

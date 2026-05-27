@@ -195,18 +195,10 @@ def main():
         client_udp.handle_send()
         # client_udp.test(ip, int(port))
 
-    def send_file():
-        ip = ip_input.get().strip()
-        port = port_input.get().strip()
-        packet_loss_val = float (pkt_input.get().strip())
-        num_pack =  int (num_packets_input.get().strip())
-        client_udp.set_drop_packets(packet_loss_val,num_pack)
-        print(f"Sending packets to {ip}:{port}")
-        print("Send file")
 
     make_button(send_btns, "Send Hello",   command=send_hello,   width=16).pack(side="left", padx=(0,10))
     make_button(send_btns, "Send Packets", command=send_packets, width=16).pack(side="left", padx=(0,10))
-    make_button(send_btns, "Send File",    command=send_file,    width=16).pack(side="left")
+    # make_button(send_btns, "Send File",    command=send_file,    width=16).pack(side="left")
 
     # ── Status bar ───────────────────────────────────────────────────
     status_bar = tk.Frame(root, bg=ACCENT, height=30)
