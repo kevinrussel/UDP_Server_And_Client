@@ -20,7 +20,7 @@ class udp_server:
             futures = []
             while True:
                 try:
-                    message,address = self.udp_server_socket.recvfrom(1024)
+                    message,address = self.udp_server_socket.recvfrom(100)
                     futures.append(executor.submit(self.handle_recieved_message,message))
                     num = num + 1
                 except KeyboardInterrupt:
