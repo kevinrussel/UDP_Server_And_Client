@@ -8,9 +8,12 @@ class udp_server:
     
     def handle_recieved_message(self,message):
         header = message[:10]
-        packet_num,timestamp = self.struct.unpack("!Hd", header)
+        packet_num,timestamp = struct.unpack("!Hd", header)
         timestamp = time.time() - timestamp
-        message = (message[10:]).decode("utf-8")                   
+        message = (message[10:]).decode("utf-8")
+        print(packet_num)
+        print(timestamp)
+        print(message)                   
         return packet_num,timestamp,message 
     
 
@@ -21,10 +24,13 @@ class udp_server:
             while True:
                 try:
                     message,address = self.udp_server_socket.recvfrom(100)
+                    self.handle_recieved_message(message)
                     futures.append(executor.submit(self.handle_recieved_message,message))
                     num = num + 1
                 except KeyboardInterrupt:
                     break
+        print("\n")
+        print(futures[0])
         print(num)
 
     def start_udp_server(self):
