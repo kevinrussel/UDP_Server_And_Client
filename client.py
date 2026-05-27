@@ -93,4 +93,6 @@ class UDP_Client:
 
     #TODO: Fix this
     def send_file(self):
-        with open("page.txt","r") as file
+        with open("page.txt","r") as file:
+            
+        
