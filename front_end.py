@@ -158,15 +158,6 @@ def main():
     num_packets_input = make_entry(num_pkt_col, width=18)
     num_packets_input.pack(ipady=6)
 
-    # def drop_packets():
-    #     packet_loss_val = pkt_input.get().strip()
-    #     print(f"Dropping {packet_loss_val}% of packets")
-    #     num_pack = num_packets_input.get().strip()
-    #     print(f"Total Number of Packets {num_pack}")
-    #     client_udp.set_drop_packets(packet_loss_val,num_pack)
-    # btn_col = tk.Frame(pkt_row, bg=CARD)
-    # btn_col.pack(side="left", anchor="s")
-    # make_button(btn_col, "Drop Packets", command=drop_packets, accent=True, width=16).pack(ipady=3)
 
     # ── Send section ─────────────────────────────────────────────────
     send_frame = section_frame(root, pady=8)

@@ -91,12 +91,4 @@ class UDP_Client:
         self.udp_client_socket.sendto(message,(server_address,port))
 
 
-    #TODO: Fix this
-    def send_file(self):
-        with open("page.txt","r") as file:
-            while True:
-                char = file.read(1)
-                if not char:
-                    break
-                print(char)
-                
+  
