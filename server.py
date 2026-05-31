@@ -15,7 +15,8 @@ class udp_server:
         return packet_num,timestamp,message 
     
 
-    
+    def calculate_graph_values(self,num,futures):
+        
 
     def udp_server_listen(self):
         num = 0
@@ -33,6 +34,7 @@ class udp_server:
         print(len(futures))
         print(futures[1].result())
         print(num)
+        self.calculate_graph_values(num,futures)
 
     def start_udp_server(self):
         self.udp_server_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
