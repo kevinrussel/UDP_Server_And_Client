@@ -27,7 +27,9 @@ class udp_server:
             if(future_value[1] > max_value):
                 max_value = future_value[1]
             total = total + future_value[1]
-        print(type(future_value[1]))
+        average = total / num
+
+        return min_value,max_value,average
         
 
     def udp_server_listen(self):
