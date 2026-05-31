@@ -16,7 +16,8 @@ class udp_server:
     
 
     def calculate_graph_values(self,num,futures):
-        
+        future_value = futures[0].result()
+        print(future_value)
 
     def udp_server_listen(self):
         num = 0
