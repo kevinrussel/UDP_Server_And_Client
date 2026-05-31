@@ -16,9 +16,10 @@ class udp_server:
     
 
     def udp_server_listen(self):
-        num = 1
+        num = 0
+        futures = []
         with ThreadPoolExecutor(max_workers=8) as executor:
-            futures = []
+            
             while True:
                 try:
                     message,address = self.udp_server_socket.recvfrom(100)
@@ -27,7 +28,8 @@ class udp_server:
                 except KeyboardInterrupt:
                     break
         print("\n")
-        print(futures[0].result())
+        print(len(futures))
+        print(futures[1].result())
         print(num)
 
     def start_udp_server(self):
