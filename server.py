@@ -4,6 +4,9 @@ import time
 import threading
 from  concurrent.futures import ThreadPoolExecutor
 
+import numpy as np
+import matplotlib.pyplot as plt
+
 class udp_server:
     
     def handle_recieved_message(self,message):
@@ -35,6 +38,13 @@ class udp_server:
 
     def create_graph(self,num,min_value,max_value,average):
         
+        x = np.array(["Max Time for UDP packet", "Min Time for UDP packet", "Average Time for UDP packet"])
+        y = np.array([max_value,min_value,average])
+
+        plt.figure(figsize=(15,8))
+        plt.bar(x,y)
+        plt.xlabel(f"UDP values for {num} packets.")
+        plt.show()
 
     def udp_server_listen(self):
         num = 0
