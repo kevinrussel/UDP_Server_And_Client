@@ -32,6 +32,10 @@ class udp_server:
         return min_value,max_value,average
         
 
+
+    def create_graph(self,num,min_value,max_value,average):
+        
+
     def udp_server_listen(self):
         num = 0
         futures = []
@@ -44,12 +48,8 @@ class udp_server:
                     num = num + 1
                 except KeyboardInterrupt:
                     break
-        print("\n")
-        print(len(futures))
-        print(futures[1].result())
-        print(num)
-        self.calculate_graph_values(num,futures)
-
+        min_value,max_value,average = self.calculate_graph_values(num,futures)
+        self.create_graph(num,min_value,max_value,average)
     def start_udp_server(self):
         self.udp_server_socket = socket.socket(socket.AF_INET,socket.SOCK_DGRAM)
 
