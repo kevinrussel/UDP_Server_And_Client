@@ -20,8 +20,13 @@ class udp_server:
         min_value = future_value[1]
         max_value = future_value[1]
         total = future_value[1]
-        for index, number in range(1,num):
-            
+        for index in range(1,num):
+            future_value = futures[index].result()
+            if(future_value[1] < min_value):
+                min_value = future_value[1]
+            if(future_value[1] > max_value):
+                max_value = future_value[1]
+            total = total + future_value[1]
         print(type(future_value[1]))
         
 
