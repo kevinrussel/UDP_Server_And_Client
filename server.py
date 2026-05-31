@@ -43,7 +43,7 @@ class udp_server:
 
         plt.figure(figsize=(15,8))
         plt.bar(x,y)
-        plt.xlabel(f"UDP values for {num} packets.")
+        plt.xlabel(f"UDP values for $\\bf{num}$ packets.")
         plt.show()
 
     def udp_server_listen(self):
