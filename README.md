@@ -15,7 +15,12 @@ A UDP server and client benchmarking tool built to explore the limits of UDP pac
 - **Real world packet loss** — measured drop rates across 100, 10,000, and 100,000 packet tests on loopback and LAN
 
 ## Key Findings
-There were two tests that I conducted. One was to measure UDP packet drop when it was on the same device. And the other was to measure packet drop when it was on the same network. 
+There were two tests that I conducted. One was to measure UDP packet drop when it was on the same device. And the other was to measure packet drop when it was on the same network.
+
+### TLDR takeway: 
+Loopback UDP is predictable and only drops under extreme volume. Network UDP introduces non-deterministic drop behavior where smaller sends can drop more than larger ones, demonstrating why application level reliability mechanisms are necessary for production UDP usage.
+
+---
 ### Same Device Results
 | Packets Sent | Packets Received | Drop Rate |
 |---|---|---|
@@ -28,11 +33,11 @@ There were two tests that I conducted. One was to measure UDP packet drop when i
 | Packets Sent | Packets Received | Drop Rate |
 |---|---|---|
 | 100 | ~100 | 0% |
-| 1000 | ~1000 | 0% |
+| 1000 | ~820 | 82% |
 | 10,000 | ~10,000 | 0% |
-| 20,000 | ~10,000 | 0% |
-| 30,000 | ~10,000 | 0% |
-| 60,000 | ~32,000 | ~53% |
+| 20,000 | ~7,800 | 39% |
+| 30,000 | ~26,000 | 86% |
+| 60,000 | ~29,800 | ~49.6% |
 
 > Increasing the socket receive buffer from the default 208KB to 4MB via `setsockopt()` significantly reduced drop rates by giving the kernel more room to buffer incoming packets before the application drains them.
 
