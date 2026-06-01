@@ -48,6 +48,7 @@ class udp_server:
         self.add_graph_labels(x,y)
 
         plt.xlabel(f"UDP values for $\\bf{num}$ packets.")
+        plt.ylabel("Seconds")
         plt.savefig(f'results/{num}_of_UDP_packets.png')
         plt.show()
 
