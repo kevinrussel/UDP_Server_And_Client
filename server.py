@@ -49,7 +49,7 @@ class udp_server:
 
         plt.xlabel(f"UDP values for $\\bf{num}$ packets.")
         plt.ylabel("Seconds")
-        plt.savefig(f'results/{num}_of_UDP_packets.png')
+        plt.savefig(f'different_machine_results/{num}_of_UDP_packets.png')
         plt.show()
 
     def udp_server_listen(self):
