@@ -12,7 +12,7 @@ A UDP server and client benchmarking tool built to explore the limits of UDP pac
 - **UDP packet structure** — custom binary headers using `struct` pack/unpack with sequence numbers and timestamps
 - **Kernel receive buffer behavior** — how the OS silently drops packets when the socket buffer overflows, and how `SO_RCVBUF` tuning affects drop rates
 - **Python threading models** — evolution from single threaded to `threading.Thread` per packet to `ThreadPoolExecutor` with a fixed worker pool
-- **Real world packet loss** — measured drop rates across 100, 10,000, and 100,000 packet tests on loopback and LAN
+- **Real world packet loss** — measured drop rates across 100, 10,000, and 60,000 packet tests on loopback and LAN
 
 ## Key Findings
 There were two tests that I conducted. One was to measure UDP packet drop when it was on the same device. And the other was to measure packet drop when it was on the same network.
