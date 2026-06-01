@@ -34,7 +34,9 @@ class udp_server:
 
         return min_value,max_value,average
         
-
+    def add_graph_labels(self,x,y):
+        for i in range(len(x)):
+            plt.text(i,y[i],y[i])
 
     def create_graph(self,num,min_value,max_value,average):
         
@@ -43,6 +45,8 @@ class udp_server:
 
         plt.figure(figsize=(15,8))
         plt.bar(x,y)
+        self.add_graph_labels(x,y)
+
         plt.xlabel(f"UDP values for $\\bf{num}$ packets.")
         plt.savefig(f'results/{num}_of_UDP_packets.png')
         plt.show()
