@@ -44,6 +44,7 @@ class udp_server:
         plt.figure(figsize=(15,8))
         plt.bar(x,y)
         plt.xlabel(f"UDP values for $\\bf{num}$ packets.")
+        plt.savefig(f'results/{num}_of_UDP_packets.png')
         plt.show()
 
     def udp_server_listen(self):
