@@ -47,6 +47,14 @@ Loopback UDP is predictable and only drops under extreme volume. Network UDP int
 | 30,000 | ~26,000 | 86% |
 | 60,000 | ~29,800 | ~49.6% |
 
+<img src="different_machine_results/100_of_UDP_packets.png" width="500" height="200" alt="Demo Screenshot">
+
+<img src="different_machine_results/824_of_UDP_packets.png" width="500" height="200" alt="Demo Screenshot">
+
+
+<img src="different_machine_results/29787_of_UDP_packets.png" width="500" height="200" alt="Demo Screenshot">
+
+
 > Increasing the socket receive buffer from the default 208KB to 4MB via `setsockopt()` significantly reduced drop rates by giving the kernel more room to buffer incoming packets before the application drains them.
 
 ## How It Works
