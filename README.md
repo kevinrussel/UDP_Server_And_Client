@@ -15,12 +15,23 @@ A UDP server and client benchmarking tool built to explore the limits of UDP pac
 - **Real world packet loss** — measured drop rates across 100, 10,000, and 100,000 packet tests on loopback and LAN
 
 ## Key Findings
-
+There were two tests that I conducted. One was to measure UDP packet drop when it was on the same device. And the other was to measure packet drop when it was on the same network. 
+### Same Device Results
 | Packets Sent | Packets Received | Drop Rate |
 |---|---|---|
 | 100 | ~100 | 0% |
 | 1000 | ~1000 | 0% |
 | 10,000 | ~10,000 | 0% |
+| 60,000 | ~32,000 | ~53% |
+
+### Different Device Results.
+| Packets Sent | Packets Received | Drop Rate |
+|---|---|---|
+| 100 | ~100 | 0% |
+| 1000 | ~1000 | 0% |
+| 10,000 | ~10,000 | 0% |
+| 20,000 | ~10,000 | 0% |
+| 30,000 | ~10,000 | 0% |
 | 60,000 | ~32,000 | ~53% |
 
 > Increasing the socket receive buffer from the default 208KB to 4MB via `setsockopt()` significantly reduced drop rates by giving the kernel more room to buffer incoming packets before the application drains them.
