@@ -29,6 +29,14 @@ Loopback UDP is predictable and only drops under extreme volume. Network UDP int
 | 10,000 | ~10,000 | 0% |
 | 60,000 | ~32,000 | ~53% |
 
+
+<img src="same_machine_results/100_of_UDP_packets.png" width="500" height="200" alt="Demo Screenshot">
+
+<img src="same_machine_results/1000_of_UDP_packets.png" width="500" height="200" alt="Demo Screenshot">
+
+
+<img src="same_machine_results/28125_of_UDP_packets.png" width="500" height="200" alt="Demo Screenshot">
+
 ### Different Device Results.
 | Packets Sent | Packets Received | Drop Rate |
 |---|---|---|
